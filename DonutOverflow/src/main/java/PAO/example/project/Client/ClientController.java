@@ -22,7 +22,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping
+    @GetMapping(path = "clients")
     public List<Client> getClients(){
         return clientService.getClients();
     }

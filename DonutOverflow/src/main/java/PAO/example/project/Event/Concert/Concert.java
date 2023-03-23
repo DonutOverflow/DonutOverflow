@@ -13,6 +13,15 @@ import java.util.List;
 @Entity
 public class Concert extends Event {
 
+    @SequenceGenerator(
+            name = "Concert_sequence",
+            sequenceName = "Concert_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "Concert_sequence"
+    )
     private String trupe;
     private String membriiTrupaPrincipala;
     private String tip_concert;
@@ -25,8 +34,8 @@ public class Concert extends Event {
     public Concert() {
     }
 
-    public Concert(String nume, String sponsor, LocalDate data, String description, Venue venue, String trupe, String membriiTrupaPrincipala, String tip_concert, Integer durata_in_ore) {
-        super(nume, sponsor, data, description, venue);
+    public Concert(String nume, String sponsor, LocalDate data, String description, String trupe, String membriiTrupaPrincipala, String tip_concert, Integer durata_in_ore) {
+        super(nume, sponsor, data, description);
         this.trupe = trupe;
         this.membriiTrupaPrincipala = membriiTrupaPrincipala;
         this.tip_concert = tip_concert;

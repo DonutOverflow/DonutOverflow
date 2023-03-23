@@ -5,9 +5,7 @@ import PAO.example.project.Ticket.Ticket;
 import PAO.example.project.Ticket.TicketF.TicketF;
 import PAO.example.project.Venue.Venue;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -16,7 +14,15 @@ import java.util.List;
 @Entity
 public class Festival extends Event {
 
-
+    @SequenceGenerator(
+            name = "Festival_sequence",
+            sequenceName = "Festival_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "Festival_sequence"
+    )
     private String trupe_cantareti;
     private String tip_festival;
     private LocalDate dataSfarsit;
@@ -28,13 +34,11 @@ public class Festival extends Event {
     public Festival() {
     }
 
-    public Festival(String nume, String sponsor, LocalDate data, Venue venue, String description, String trupe_cantareti, String tip_festival, LocalDate dataSfarsit) {
-        super(nume, sponsor, data, description, venue);
+    public Festival(String nume, String sponsor, LocalDate data, String description, String trupe_cantareti, String tip_festival, LocalDate dataSfarsit) {
+        super(nume, sponsor, data, description);
         this.trupe_cantareti = trupe_cantareti;
         this.tip_festival = tip_festival;
         this.dataSfarsit = dataSfarsit;
-
-
     }
 
     public List<TicketF> getTicketF() {
