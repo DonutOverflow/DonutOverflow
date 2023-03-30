@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 
 @RestController
-@RequestMapping(path = "api/v1/concert")
+@RequestMapping(value = "/concert")
 public class ConcertController {
 
     private final ConcertService concertService;
@@ -22,7 +22,7 @@ public class ConcertController {
         this.concertService = concertService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/concerts")
     public List<Concert> getConcerts(){
         return concertService.getConcerts();
     }
@@ -32,12 +32,12 @@ public class ConcertController {
         concertService.addNewConcert(concert);
     }
 
-    @DeleteMapping(path = "{concertId}")
+    @DeleteMapping(path = "/delete/{concertId}")
     public void deleteConcert(@PathVariable("concertId") Long concertId) {
         concertService.deleteConcert(concertId);
     }
 
-    @PutMapping(path = "{concertid}")
+    @PutMapping(path = "/update/{concertid}")
     public void updateConcert(
             @PathVariable("concertid") Long concertid,
             @RequestParam(required = false) Integer durata_in_ore) {

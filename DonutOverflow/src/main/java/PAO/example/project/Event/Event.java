@@ -18,6 +18,15 @@ public class Event {
     }
 
     @Id
+    @SequenceGenerator(
+            name = "Event_sequence",
+            sequenceName = "Event_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "Event_sequence"
+    )
     private Long id;
     private String nume;
     private String sponsor;
@@ -39,12 +48,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(String nume, String sponsor, LocalDate data, String description, Venue venue) {
+    public Event(String nume, String sponsor, LocalDate data, String description) {
         this.nume = nume;
         this.sponsor = sponsor;
         this.data = data;
         this.description = description;
-        this.venue= venue;
     }
 
     public Venue getVenue() {

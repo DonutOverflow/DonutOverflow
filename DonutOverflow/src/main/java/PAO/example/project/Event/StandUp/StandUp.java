@@ -4,8 +4,7 @@ import PAO.example.project.Event.Event;
 import PAO.example.project.Ticket.Ticket;
 import PAO.example.project.Venue.Venue;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,15 @@ import java.util.List;
 @Entity
 public class StandUp extends Event {
 
+    @SequenceGenerator(
+            name = "StandUp_sequence",
+            sequenceName = "StandUp_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "StandUp_sequence"
+    )
     private String comedianti;
     private Integer durata_in_ore;
 
@@ -22,8 +30,8 @@ public class StandUp extends Event {
     public StandUp() {
     }
 
-    public StandUp(String nume, String sponsor, LocalDate data, Venue venue, String description, String comedianti, Integer durata_in_ore) {
-        super(nume, sponsor, data, description, venue);
+    public StandUp(String nume, String sponsor, LocalDate data, String description, String comedianti, Integer durata_in_ore) {
+        super(nume, sponsor, data, description);
         this.comedianti = comedianti;
         this.durata_in_ore = durata_in_ore;
     }

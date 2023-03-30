@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "api/v1/client")
+@RequestMapping(path = "/client")
 public class ClientController {
 
     private final ClientService clientService;
@@ -22,22 +22,22 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/clients")
     public List<Client> getClients(){
         return clientService.getClients();
     }
 
-    @PostMapping
+    @PostMapping(value = "/add")
     public void registerNewClient(@RequestBody Client client){
         clientService.addNewClient(client);
     }
 
-    @DeleteMapping(path = "{clientId}")
+    @DeleteMapping(value = "/delete/{clientId}")
     public void deleteClient(@PathVariable("clientId") Long clientId) {
         clientService.deleteClient(clientId);
     }
 
-    @PutMapping(path = "{clientid}")
+    @PutMapping(value = "/update/{clientid}")
     public void updateClient(
             @PathVariable("clientid") Long clientid,
             @RequestParam(required = false) String nume,

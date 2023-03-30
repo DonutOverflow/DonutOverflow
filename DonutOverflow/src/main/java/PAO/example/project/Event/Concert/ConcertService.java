@@ -87,7 +87,7 @@ public class ConcertService {
         List<Concert> concertf = null;
 
         for(Concert value : concert){
-            if(value.getmembriiTrupaPrincipala().contains(membru)){
+            if(value.getMembriiTrupaPrincipala().contains(membru)){
                 concertf.add(value);
             }
         }
